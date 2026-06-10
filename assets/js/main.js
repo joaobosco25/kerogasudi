@@ -60,22 +60,53 @@ function initHeroCarousel() {
     }
   };
 
-  prev?.addEventListener('click', () => {
+  const goToPreviousSlide = event => {
+    event?.preventDefault();
+    event?.stopPropagation();
     setSlide(currentIndex - 1);
     startAutoplay();
-  });
+  };
 
-  next?.addEventListener('click', () => {
+  const goToNextSlide = event => {
+    event?.preventDefault();
+    event?.stopPropagation();
     setSlide(currentIndex + 1);
     startAutoplay();
-  });
+  };
+
+  prev?.addEventListener('click', goToPreviousSlide);
+  next?.addEventListener('click', goToNextSlide);
 
   dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
+    dot.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
       setSlide(index);
       startAutoplay();
     });
   });
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  carousel.addEventListener('touchstart', event => {
+    touchStartX = event.changedTouches[0].screenX;
+  }, { passive: true });
+
+  carousel.addEventListener('touchend', event => {
+    touchEndX = event.changedTouches[0].screenX;
+    const distance = touchEndX - touchStartX;
+
+    if (Math.abs(distance) < 45) return;
+
+    if (distance > 0) {
+      setSlide(currentIndex - 1);
+    } else {
+      setSlide(currentIndex + 1);
+    }
+
+    startAutoplay();
+  }, { passive: true });
 
   carousel.addEventListener('mouseenter', stopAutoplay);
   carousel.addEventListener('mouseleave', startAutoplay);
