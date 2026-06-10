@@ -26,6 +26,7 @@ function initHeroCarousel() {
   const dots = Array.from(carousel.querySelectorAll('.hero-dot'));
   const prev = carousel.querySelector('.hero-arrow-prev');
   const next = carousel.querySelector('.hero-arrow-next');
+  const hero = carousel.closest('.hero');
 
   if (!slides.length) return;
 
@@ -43,6 +44,8 @@ function initHeroCarousel() {
       dot.classList.toggle('is-active', dotIndex === currentIndex);
       dot.setAttribute('aria-current', String(dotIndex === currentIndex));
     });
+
+    hero?.classList.toggle('is-promo-active', slides[currentIndex]?.classList.contains('hero-slide-promo'));
   };
 
   const startAutoplay = () => {

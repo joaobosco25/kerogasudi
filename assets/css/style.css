@@ -1203,6 +1203,125 @@ img {
     }
 
 }
+
+/* Ajustes para o slide promocional dentro da hero */
+.hero-slide picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero.is-promo-active::before {
+  opacity: 0;
+}
+
+.hero.is-promo-active::after {
+  background: linear-gradient(180deg, rgba(0, 0, 0, .04), rgba(0, 0, 0, .08));
+}
+
+.hero.is-promo-active .orange-dots,
+.hero.is-promo-active .partner-card {
+  display: none;
+}
+
+.hero-promo-mobile-copy {
+  display: none;
+}
+
+@media (min-width: 721px) {
+  .hero.is-promo-active .hero-content {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .hero-slide-promo img {
+    object-position: center center;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero.is-promo-active .hero-content {
+    display: none;
+  }
+
+  .hero.is-promo-active .hero-promo-mobile-copy {
+    position: absolute;
+    top: 76px;
+    left: 22px;
+    right: 22px;
+    z-index: 5;
+    display: block;
+    color: #fff;
+    text-align: left;
+  }
+
+  .hero-promo-mobile-copy span {
+    display: inline-flex;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(18, 18, 18, .88);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .hero-promo-mobile-copy h2 {
+    margin: 0 0 12px;
+    max-width: 520px;
+    color: #fff;
+    font-size: clamp(34px, 11vw, 54px);
+    line-height: .92;
+    letter-spacing: -1.8px;
+    text-transform: uppercase;
+    text-shadow: 0 5px 14px rgba(90, 31, 0, .26);
+  }
+
+  .hero-promo-mobile-copy p {
+    margin: 0 0 18px;
+    max-width: 420px;
+    color: #fff;
+    font-size: 17px;
+    line-height: 1.35;
+    font-weight: 850;
+  }
+
+  .hero-promo-mobile-copy p strong {
+    color: #0a7c2f;
+    background: #ffe033;
+    padding: 1px 6px;
+    border-radius: 7px;
+    white-space: nowrap;
+  }
+
+  .hero-promo-mobile-copy a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #101010;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 950;
+    text-transform: uppercase;
+    box-shadow: 0 15px 28px rgba(0, 0, 0, .24);
+  }
+
+  .hero-slide-promo img {
+    object-position: center bottom;
+  }
+}
+
 /* ==============================
    MODAL PROMOÇÃO KEROGAS
    ============================== */
@@ -1224,28 +1343,56 @@ img {
 .kero-promo-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.78);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, .78);
+  backdrop-filter: blur(6px);
 }
 
 .kero-promo-box {
   position: relative;
   z-index: 2;
-  width: min(90vw, 1160px);
+  width: min(90vw, 1240px);
   height: 90dvh;
   max-height: 760px;
   overflow: hidden;
   border-radius: 30px;
-  background:
-    radial-gradient(circle at 82% 16%, rgba(255, 255, 255, 0.22), transparent 28%),
-    linear-gradient(135deg, #ff7a00 0%, #ff8b1a 44%, #111 100%);
   color: #fff;
-  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.45);
-  animation: keroPromoEnter 0.28s ease both;
+  background:
+    radial-gradient(circle at 22% 35%, rgba(255, 225, 102, .55), transparent 28%),
+    linear-gradient(135deg, #ff8a00 0%, #ff6500 48%, #f25a00 100%);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, .48);
+  animation: keroPromoEnter .28s ease both;
 }
 
-/* Essa parte resolve o problema do desktop: o conteúdo rola dentro do modal */
+.kero-promo-box::before {
+  content: "";
+  position: absolute;
+  left: -90px;
+  bottom: -110px;
+  width: 470px;
+  height: 560px;
+  background: rgba(213, 68, 0, .18);
+  clip-path: polygon(49% 0, 72% 27%, 59% 49%, 79% 78%, 47% 100%, 24% 72%, 37% 48%, 19% 24%);
+  pointer-events: none;
+}
+
+.kero-promo-box::after {
+  content: "";
+  position: absolute;
+  right: -70px;
+  bottom: -70px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(0,0,0,.05), transparent 22%),
+    repeating-conic-gradient(from 0deg, rgba(0,0,0,.12) 0 18deg, rgba(255,255,255,.06) 18deg 36deg);
+  opacity: .38;
+  pointer-events: none;
+}
+
 .kero-promo-scroll {
+  position: relative;
+  z-index: 1;
   height: 100%;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -1257,102 +1404,139 @@ img {
 }
 
 .kero-promo-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.45);
   border-radius: 999px;
+  background: rgba(255, 255, 255, .48);
 }
 
 .kero-promo-close {
   position: absolute;
   top: 18px;
   right: 18px;
-  z-index: 5;
+  z-index: 6;
   width: 46px;
   height: 46px;
   border: 0;
   border-radius: 999px;
+  display: grid;
+  place-items: center;
   background: #fff;
   color: #111;
   font-size: 34px;
   line-height: 1;
   cursor: pointer;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .28);
 }
 
-.kero-promo-content {
+.kero-promo-layout {
   min-height: 100%;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
-  align-items: center;
-  gap: 34px;
-  padding: clamp(32px, 5vw, 68px);
+  grid-template-columns: minmax(300px, .82fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.kero-promo-image {
+  position: relative;
+  min-height: 620px;
+  background-image: url('../img/promocao-versao-responsiva.png');
+  background-size: cover;
+  background-position: center bottom;
+}
+
+.kero-promo-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 114, 0, 0) 70%, rgba(255, 114, 0, .9) 100%);
 }
 
 .kero-promo-copy {
-  max-width: 640px;
+  align-self: center;
+  max-width: 680px;
+  padding: clamp(34px, 5vw, 70px) clamp(26px, 5vw, 74px) clamp(34px, 4vw, 58px) clamp(22px, 3.4vw, 48px);
+  text-shadow: 0 5px 16px rgba(99, 34, 0, .18);
 }
 
 .kero-promo-label {
   display: inline-flex;
   margin-bottom: 18px;
-  padding: 9px 15px;
+  padding: 10px 16px;
   border-radius: 999px;
   background: #111;
   color: #fff;
-  font-size: 0.78rem;
-  font-weight: 900;
+  font-size: .82rem;
+  font-weight: 950;
+  letter-spacing: .08em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
 }
 
 .kero-promo-copy h2 {
   margin: 0 0 18px;
   color: #fff;
-  font-size: clamp(2.15rem, 5vw, 5rem);
-  line-height: 0.92;
-  letter-spacing: -0.07em;
+  font-size: clamp(2.6rem, 5.1vw, 5.6rem);
+  line-height: .92;
+  letter-spacing: -0.065em;
   text-transform: uppercase;
 }
 
-.kero-promo-subtitle {
-  margin: 0 0 22px;
-  color: rgba(255, 255, 255, 0.94);
-  font-size: clamp(1rem, 1.7vw, 1.35rem);
-  line-height: 1.45;
+.kero-promo-copy h2::first-line {
+  color: #ffd400;
 }
 
-.kero-promo-subtitle strong {
+.kero-promo-lead {
+  margin: 0 0 22px;
+  max-width: 640px;
+  color: #fff;
+  font-size: clamp(1.06rem, 1.8vw, 1.45rem);
+  line-height: 1.4;
+  font-weight: 850;
+}
+
+.kero-promo-lead strong {
   display: inline-block;
-  padding: 2px 8px;
-  border-radius: 8px;
-  background: #fff;
-  color: #111;
+  padding: 2px 9px 3px;
+  border-radius: 9px;
+  background: #ffd51b;
+  color: #047833;
+  font-weight: 1000;
   white-space: nowrap;
+  text-shadow: none;
+}
+
+.kero-promo-lead b {
+  color: #ffd51b;
 }
 
 .kero-promo-coupon {
   width: fit-content;
   margin-bottom: 22px;
-  padding: 16px 20px;
-  border: 2px dashed rgba(255, 255, 255, 0.75);
-  border-radius: 20px;
-  background: rgba(17, 17, 17, 0.18);
+  padding: 18px 22px;
+  border: 2px solid rgba(255, 255, 255, .82);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .1);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
 }
 
 .kero-promo-coupon span {
   display: block;
-  margin-bottom: 4px;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.78rem;
-  font-weight: 800;
+  margin-bottom: 6px;
+  color: rgba(255, 255, 255, .86);
+  font-size: .78rem;
+  font-weight: 950;
+  letter-spacing: .08em;
   text-transform: uppercase;
 }
 
 .kero-promo-coupon strong {
   display: block;
-  color: #fff;
-  font-size: clamp(1.4rem, 2.6vw, 2.4rem);
+  color: #087633;
+  font-size: clamp(1.7rem, 3.2vw, 3.1rem);
   line-height: 1;
-  letter-spacing: -0.04em;
+  font-weight: 1000;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  text-shadow:
+    0 2px 0 rgba(255,255,255,.8),
+    0 14px 28px rgba(0,0,0,.18);
 }
 
 .kero-promo-benefits {
@@ -1364,152 +1548,94 @@ img {
 
 .kero-promo-benefits article {
   padding: 15px;
+  border: 1px solid rgba(255, 255, 255, .24);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, .13);
+  backdrop-filter: blur(8px);
+}
+
+.kero-promo-benefits article span {
+  display: inline-flex;
+  margin-bottom: 8px;
+  color: #ffd51b;
+  font-size: .78rem;
+  font-weight: 1000;
 }
 
 .kero-promo-benefits b {
   display: block;
   margin-bottom: 6px;
   color: #fff;
-  font-size: 0.95rem;
+  font-size: .96rem;
 }
 
 .kero-promo-benefits p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 0.84rem;
+  color: rgba(255, 255, 255, .86);
+  font-size: .84rem;
   line-height: 1.35;
+  font-weight: 650;
 }
 
 .kero-promo-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 56px;
-  padding: 0 26px;
+  min-height: 58px;
+  padding: 0 28px;
   border-radius: 999px;
   background: #111;
   color: #fff;
-  font-weight: 900;
+  font-size: .98rem;
+  font-weight: 1000;
+  text-transform: uppercase;
   text-decoration: none;
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, .3);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
 .kero-promo-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.38);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, .38);
 }
 
 .kero-promo-warning {
   display: block;
   margin-top: 13px;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.8rem;
-}
-
-.kero-promo-art {
-  position: relative;
-  min-height: 430px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.kero-gas-cylinder {
-  position: relative;
-  width: min(270px, 58vw);
-  height: 350px;
-  border-radius: 78px 78px 48px 48px;
-  background:
-    linear-gradient(90deg, #bc4300 0%, #ff7600 28%, #ff9d33 52%, #dd5700 100%);
-  box-shadow:
-    inset -22px 0 38px rgba(0, 0, 0, 0.22),
-    inset 18px 0 30px rgba(255, 255, 255, 0.24),
-    0 32px 70px rgba(0, 0, 0, 0.35);
-}
-
-.kero-gas-cylinder::before {
-  content: "";
-  position: absolute;
-  top: -62px;
-  left: 50%;
-  width: 152px;
-  height: 84px;
-  transform: translateX(-50%);
-  border: 24px solid #ff7a00;
-  border-bottom: 0;
-  border-radius: 42px 42px 0 0;
-}
-
-.kero-gas-cylinder::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -22px;
-  width: 78%;
-  height: 42px;
-  transform: translateX(-50%);
-  border-radius: 0 0 26px 26px;
-  background: #a83a00;
-}
-
-.kero-gas-cylinder span {
-  position: absolute;
-  top: 49%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  font-size: clamp(2.1rem, 3.4vw, 3.35rem);
-  font-weight: 1000;
-  letter-spacing: -0.06em;
-}
-
-.kero-gift-card {
-  position: absolute;
-  right: 0;
-  bottom: 28px;
-  width: 190px;
-  padding: 18px;
-  border-radius: 22px;
-  background: #fff;
-  color: #111;
-  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.28);
-  transform: rotate(4deg);
-}
-
-.kero-gift-card span {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 2.7rem;
-}
-
-.kero-gift-card strong {
-  display: block;
-  color: #111;
-  font-size: 1.25rem;
-  line-height: 1.05;
-  text-transform: uppercase;
+  color: rgba(255, 255, 255, .78);
+  font-size: .8rem;
+  font-weight: 650;
 }
 
 @keyframes keroPromoEnter {
-  from {
-    opacity: 0;
-    transform: translateY(14px) scale(0.98);
+  from { opacity: 0; transform: translateY(14px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 1020px) {
+  .kero-promo-layout {
+    grid-template-columns: 1fr;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  .kero-promo-image {
+    min-height: 380px;
+    background-size: cover;
+    background-position: center bottom;
+  }
+
+  .kero-promo-image::after {
+    background: linear-gradient(180deg, rgba(255, 114, 0, 0) 60%, rgba(255, 114, 0, .98) 100%);
+  }
+
+  .kero-promo-copy {
+    max-width: none;
+    padding: 26px 24px 32px;
   }
 }
 
-/* Tablet e celular */
-@media (max-width: 900px) {
+@media (max-width: 720px) {
   .kero-promo-modal {
-    padding: 12px;
+    padding: 10px;
   }
 
   .kero-promo-box {
@@ -1519,13 +1645,39 @@ img {
     border-radius: 22px;
   }
 
-  .kero-promo-content {
-    display: block;
-    padding: 72px 20px 30px;
+  .kero-promo-close {
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+    font-size: 30px;
+  }
+
+  .kero-promo-image {
+    min-height: 430px;
+    background-size: cover;
+    background-position: center bottom;
   }
 
   .kero-promo-copy {
-    max-width: none;
+    padding: 24px 18px 30px;
+  }
+
+  .kero-promo-label {
+    font-size: .72rem;
+  }
+
+  .kero-promo-copy h2 {
+    font-size: clamp(2.15rem, 11vw, 3.5rem);
+  }
+
+  .kero-promo-lead {
+    font-size: 1rem;
+  }
+
+  .kero-promo-coupon {
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .kero-promo-benefits {
@@ -1534,63 +1686,32 @@ img {
 
   .kero-promo-button {
     width: 100%;
+    min-height: 54px;
+    padding-inline: 16px;
     text-align: center;
   }
-
-  .kero-promo-art {
-    min-height: 310px;
-    margin-top: 36px;
-  }
-
-  .kero-gas-cylinder {
-    width: 200px;
-    height: 260px;
-    border-radius: 58px 58px 38px 38px;
-  }
-
-  .kero-gas-cylinder::before {
-    top: -50px;
-    width: 118px;
-    height: 66px;
-    border-width: 19px;
-    border-bottom: 0;
-  }
-
-  .kero-gift-card {
-    right: 8px;
-    bottom: 8px;
-    width: 150px;
-    padding: 14px;
-  }
-
-  .kero-gift-card span {
-    font-size: 2.1rem;
-  }
-
-  .kero-gift-card strong {
-    font-size: 1rem;
-  }
+}
+/* Correção da imagem da promoção no carousel */
+.hero-slide-promo {
+  background: #ff6a00;
 }
 
-@media (max-width: 520px) {
-  .kero-promo-close {
-    top: 14px;
-    right: 14px;
-    width: 42px;
-    height: 42px;
-    font-size: 30px;
-  }
+.hero-slide-promo picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 
-  .kero-promo-copy h2 {
-    font-size: clamp(2rem, 12vw, 3.25rem);
-  }
-
-  .kero-promo-subtitle {
-    font-size: 1rem;
-  }
-
-  .kero-promo-coupon {
-    width: 100%;
-    box-sizing: border-box;
-  }
+.hero-slide-promo picture img {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transform: translateY(-50%);
 }
