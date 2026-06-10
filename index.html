@@ -14,11 +14,11 @@
   <div class="topbar">
     <div class="wrap topbar-inner">
       <div class="topbar-left">
-        <span>📍 Uberlândia - MG</span>
+        <span><ion-icon name="location"></ion-icon> Uberlândia - MG</span>
         <span class="sep"></span>
         <span>☎ (34) 9 9630-1818</span>
         <span class="sep"></span>
-        <span class="whats-mini">◉</span>
+        <span class="whats-mini"><ion-icon name="logo-whatsapp"></ion-icon></span>
         <span>(34) 9 9630-1818</span>
       </div>
       <div class="topbar-right">
@@ -64,18 +64,8 @@
       <div class="hero-carousel" aria-label="Imagens em destaque da Kero Gás" data-hero-carousel>
         <div class="hero-slides">
 
-          <!--PROMOCIONAL QUE VAI SER RETIRADO APÓS O PERÍODO DA COPA E ALTERADO PRA OUTRO PROMOCIONAL-->
-          <figure class="hero-slide is-active hero-slide-promo">
-  <picture>
-    <source media="(max-width: 720px)" srcset="assets/img/promocao-versao-responsiva.png" />
-    <img src="assets/img/promocao-copa.png" alt="Promoção Brasil Campeão">
-  </picture>
-          </figure>
-
-
-
-          <!--RESTANTE DOS SLIDES-->
-          <figure class="hero-slide">
+          <!-- SLIDES PRINCIPAIS -->
+          <figure class="hero-slide is-active">
             <img src="assets/img/homem-segurando-gas-fundo-cozinha.png" alt="Entregador Kero Gás segurando botijão em frente a cozinha comercial" />
           </figure>
           <figure class="hero-slide">
@@ -93,15 +83,6 @@
           <button class="hero-dot is-active" type="button" aria-label="Ir para imagem 1"></button>
           <button class="hero-dot" type="button" aria-label="Ir para imagem 2"></button>
           <button class="hero-dot" type="button" aria-label="Ir para imagem 3"></button>
-          <button class="hero-dot" type="button" aria-label="Ir para imagem 4"></button>
-        </div>
-
-
-        <div class="hero-promo-mobile-copy" aria-label="Promoção Brasil Campeão">
-          <span>Promoção de junho</span>
-          <h2>Torça com a Kero Gás</h2>
-          <p>Envie <strong>Brasil Campeão</strong> no WhatsApp, ganhe desconto exclusivo e concorra a um brinde especial.</p>
-          <a href="https://wa.me/5534996301818?text=Brasil%20Campe%C3%A3o" target="_blank" rel="noopener">Enviar Brasil Campeão</a>
         </div>
 
         <div class="partner-card" aria-label="Revendedora parceira Supergasbras">
@@ -150,15 +131,6 @@
       </div>
     </section>
 
-    <section class="benefits" aria-label="Vantagens da Kero Gás">
-      <div class="wrap benefits-grid">
-        <div class="benefit-item"><span class="benefit-icon"><ion-icon name="timer-outline"></ion-icon></span><div><h3>Entrega rápida</h3><p>Agilidade que você precisa, quando você precisa.</p></div></div>
-        <div class="benefit-item"><span class="benefit-icon"><ion-icon name="logo-whatsapp"></ion-icon></span><div><h3>Atendimento via WhatsApp</h3><p>Fale com a gente de forma prática, rápida e sem complicação.</p></div></div>
-        <div class="benefit-item"><span class="benefit-icon"><ion-icon name="lock-closed-outline"></ion-icon></span><div><h3>Segurança no fornecimento</h3><p>Produto certificado e manuseio com total segurança.</p></div></div>
-        <div class="benefit-item"><span class="benefit-icon"><ion-icon name="headset-outline"></ion-icon></span><div><h3>Suporte confiável</h3><p>Equipe treinada para atender e resolver o que você precisar.</p></div></div>
-      </div>
-    </section>
-
     <section class="steps" id="pedidos" aria-label="Como pedir seu gás">
       <div class="wrap steps-inner">
         <div class="steps-title">
@@ -173,6 +145,37 @@
           <i>›</i>
           <article class="step-card"><strong>4</strong><span><ion-icon name="heart"></ion-icon></span><div><h3>Pronto!</h3></div></article>
         </div>
+      </div>
+    </section>
+
+    <section class="promo-section" aria-label="Promoção Brasil Campeão">
+      <div class="wrap promo-section-inner">
+        <article class="promo-section-card">
+          <picture class="promo-section-picture">
+            <source media="(max-width: 720px)" srcset="assets/img/promocao-versao-responsiva.png" />
+            <img src="assets/img/promocao-copa.png" alt="Promoção Brasil Campeão da Kero Gás" />
+          </picture>
+
+          <div class="promo-section-copy">
+            <h2>A Kero Gás está incentivando a torcida!</h2>
+            <p>
+              Nos chame no WhatsApp com a frase <strong>“Brasil Campeão”</strong> e ganhe um desconto exclusivo, além de um lindo brinde!
+            </p>
+            <a class="promo-whatsapp-button" href="https://wa.me/5534996301818?text=Brasil%20Campe%C3%A3o" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp com a frase Brasil Campeão">
+              <ion-icon name="logo-whatsapp"></ion-icon>
+              WhatsApp
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="benefits" aria-label="Vantagens da Kero Gás">
+      <div class="wrap benefits-grid">
+        <div class="benefit-item"><span class="benefit-icon"><ion-icon name="timer-outline"></ion-icon></span><div><h3>Entrega rápida</h3><p>Agilidade que você precisa, quando você precisa.</p></div></div>
+        <div class="benefit-item"><span class="benefit-icon"><ion-icon name="logo-whatsapp"></ion-icon></span><div><h3>Atendimento via WhatsApp</h3><p>Fale com a gente de forma prática, rápida e sem complicação.</p></div></div>
+        <div class="benefit-item"><span class="benefit-icon"><ion-icon name="lock-closed-outline"></ion-icon></span><div><h3>Segurança no fornecimento</h3><p>Produto certificado e manuseio com total segurança.</p></div></div>
+        <div class="benefit-item"><span class="benefit-icon"><ion-icon name="headset-outline"></ion-icon></span><div><h3>Suporte confiável</h3><p>Equipe treinada para atender e resolver o que você precisar.</p></div></div>
       </div>
     </section>
 
